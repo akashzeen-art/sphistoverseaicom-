@@ -19,7 +19,7 @@ export default function TalkPanel({ profile, figureId }) {
   const systemPrompt = useMemo(() => buildFigureSystemPrompt(profile), [profile]);
   const greeting = useMemo(() => buildFigureGreeting(profile), [profile]);
 
-  const { messages, isLoading, isSpeaking, error, sendMessage, resetChat } =
+  const { messages, isLoading, isSpeaking, isPaused, error, sendMessage, resetChat, togglePause } =
     useFrontendChat(systemPrompt, '', profile, figureId);
 
   useEffect(() => {
@@ -57,16 +57,16 @@ export default function TalkPanel({ profile, figureId }) {
         <h2 className="ht-talk-intro__name">{profile.name}</h2>
         <p className="ht-talk-intro__job">{profile.job}</p>
         <p className="ht-talk-intro__tagline">
-          Step into history. Ask me anything about my life, my era, and my legacy.
+          Entra en la historia. Pregúntame lo que quieras sobre mi vida, mi época y mi legado.
         </p>
         <button type="button" className="ht-talk-intro__btn hv-rise" onClick={handleStart}>
-          Begin Conversation
+          Iniciar conversación
         </button>
       </div>
     );
   }
 
-  const statusLabel = isLoading ? 'Thinking…' : isSpeaking ? 'Speaking…' : 'Live';
+  const statusLabel = isLoading ? 'Pensando…' : isPaused ? 'En pausa' : isSpeaking ? 'Hablando…' : 'En vivo';
 
   return (
     <div className="ht-talk hv-fade">
@@ -74,13 +74,33 @@ export default function TalkPanel({ profile, figureId }) {
         <span className={`ht-talk__live-dot${isSpeaking ? ' ht-talk__live-dot--speaking' : ''}`} />
         <span className="ht-talk__name">{name}</span>
         <span className="ht-talk__status">{statusLabel}</span>
+        {isSpeaking && (
+          <button
+            type="button"
+            className={`ht-talk__pause${isPaused ? ' ht-talk__pause--paused' : ''}`}
+            onClick={togglePause}
+            aria-label={isPaused ? 'Reanudar' : 'Pausar'}
+          >
+            {isPaused ? (
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor">
+                <path d="M3 2l9 5-9 5V2z"/>
+              </svg>
+            ) : (
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor">
+                <rect x="2" y="2" width="4" height="10" rx="1"/>
+                <rect x="8" y="2" width="4" height="10" rx="1"/>
+              </svg>
+            )}
+            {isPaused ? 'Reanudar' : 'Pausar'}
+          </button>
+        )}
         <button
           type="button"
           className="ht-talk__reset"
           disabled={busy}
           onClick={() => resetChat(greeting)}
         >
-          New chat
+          Nueva conversación
         </button>
       </div>
 
@@ -124,7 +144,7 @@ export default function TalkPanel({ profile, figureId }) {
           className="ht-talk__input"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder={`Ask ${name} anything…`}
+          placeholder={`Pregunta a ${name} lo que quieras…`}
           disabled={busy}
           autoComplete="off"
         />
@@ -133,7 +153,7 @@ export default function TalkPanel({ profile, figureId }) {
           className="ht-talk__send"
           disabled={busy || !input.trim()}
         >
-          {isLoading ? 'Thinking…' : isSpeaking ? 'Speaking…' : 'Send'}
+          {isLoading ? 'Pensando…' : isSpeaking ? 'Hablando…' : 'Enviar'}
         </button>
       </form>
     </div>

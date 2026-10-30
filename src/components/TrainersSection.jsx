@@ -7,9 +7,9 @@ export default function TrainersSection() {
   return (
     <div className="container-fluid hv-trainers-section" id="brain-trainers">
       <div className="container-xxl py-4 py-lg-5">
-        <div className="hv-section-label hv-rise">— Brain Trainers —</div>
+        <div className="hv-section-label hv-rise">— Entrenadores Mentales —</div>
         <h2 className="hv-section-title hv-rise hv-rise-delay-1">
-          Train your mind with <span>history</span>
+          Entrena tu mente con <span>la historia</span>
         </h2>
 
         <div className="hv-trainers-grid hv-rise hv-rise-delay-2">
@@ -18,13 +18,13 @@ export default function TrainersSection() {
               <div className="hv-trainer-card__icon">{ICONS[i % ICONS.length]}</div>
               <div className="hv-trainer-card__category">{trainer.title}</div>
               <div className="hv-trainer-card__name">{trainer.name}</div>
-              <div className="hv-trainer-card__cta">Start →</div>
+              <div className="hv-trainer-card__cta">Empezar →</div>
             </Link>
           ))}
         </div>
 
         <div className="text-center mt-5 hv-rise hv-rise-delay-3">
-          <Link className="hv-btn-outline" to="/brain-trainers">View all trainers</Link>
+          <Link className="hv-btn-outline" to="/brain-trainers">Ver todos los entrenadores</Link>
         </div>
       </div>
     </div>

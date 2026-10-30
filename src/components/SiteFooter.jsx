@@ -12,7 +12,7 @@ export default function SiteFooter({ hidden = false }) {
           </div>
           <div className="col-md-12">
             <p className="mb-0">
-              Copyright © 2026 All rights reserved{' '}
+              Copyright © 2026 Todos los derechos reservados{' '}
               <a href="https://content.histoverseai.com/history/" target="_blank" rel="noreferrer">
                 HistoVerse AI
               </a>

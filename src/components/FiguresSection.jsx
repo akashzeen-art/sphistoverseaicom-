@@ -12,9 +12,9 @@ export default function FiguresSection() {
   return (
     <div className="container-fluid hv-figures-section" id="slider">
       <div className="container-xxl py-4 py-lg-5">
-        <div className="hv-section-label hv-rise">— Historical Figures —</div>
+        <div className="hv-section-label hv-rise">— Figuras Históricas —</div>
         <h2 className="hv-section-title hv-rise hv-rise-delay-1">
-          Who will you <span>speak with?</span>
+          ¿Con quién quieres <span>hablar?</span>
         </h2>
 
         <div className="hv-filter-tabs hv-rise hv-rise-delay-2">
@@ -37,7 +37,7 @@ export default function FiguresSection() {
               <div className="hv-figure-card__era">{figure.category}</div>
               <div className="hv-figure-card__name">{figure.name}</div>
               <div className="hv-figure-card__job">{figure.job}</div>
-              <div className="hv-figure-card__cta">Talk →</div>
+              <div className="hv-figure-card__cta">Hablar →</div>
             </Link>
           ))}
         </div>

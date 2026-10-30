@@ -658,6 +658,37 @@
   cursor: not-allowed;
 }
 
+.ht-talk__pause {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: transparent;
+  border: 1px solid var(--ht-border);
+  color: var(--ht-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 0.3rem 0.8rem;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  margin-left: 0.4rem;
+}
+
+.ht-talk__pause:hover {
+  border-color: var(--ht-gold);
+  color: var(--ht-gold);
+}
+
+.ht-talk__pause--paused {
+  border-color: #4caf50;
+  color: #4caf50;
+}
+
+.ht-talk__pause--paused:hover {
+  border-color: #66bb6a;
+  color: #66bb6a;
+}
+
 .ht-talk__messages {
   flex: 1;
   overflow-y: auto;

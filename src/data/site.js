@@ -8,7 +8,7 @@ export {
 } from './figuresCatalog.js'
 
 export const menuLinks = [
-  { label: 'Home', href: '/' },
-  { label: 'Historical figures', href: '/#slider' },
-  { label: 'Brain trainers', href: '/brain-trainers' },
+  { label: 'Inicio', href: '/' },
+  { label: 'Figuras históricas', href: '/#slider' },
+  { label: 'Entrenadores mentales', href: '/brain-trainers' },
 ]

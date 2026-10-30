@@ -5,14 +5,14 @@ const EXIT_MS = 700;
 const STORAGE_KEY = 'hv-intro-seen';
 
 const FIGURES = [
-  { name: 'Shakespeare', src: '/images/figures/1.png' },
-  { name: 'Lincoln', src: '/images/figures/9.png' },
-  { name: 'Churchill', src: '/images/figures/7.png' },
-  { name: 'Agatha', src: '/images/figures/2.png' },
-  { name: 'Ali', src: '/images/figures/13.png' },
-  { name: 'Newton', src: '/images/figures/23.png' },
-  { name: 'Mozart', src: '/images/figures/17.png' },
-  { name: 'Mandela', src: '/images/figures/10.png' },
+  { name: 'Shakespeare' },
+  { name: 'Lincoln' },
+  { name: 'Churchill' },
+  { name: 'Agatha' },
+  { name: 'Ali' },
+  { name: 'Newton' },
+  { name: 'Mozart' },
+  { name: 'Mandela' },
 ];
 
 function makeDust(count) {
@@ -106,7 +106,7 @@ export default function Preloader({ onDone }) {
       className={`hv-preloader${leaving ? ' is-leaving' : ''}`}
       role="dialog"
       aria-modal="true"
-      aria-label="HistoVerse is opening the archive"
+      aria-label="HistoVerse está abriendo el archivo"
     >
       <div className="hv-preloader__glow hv-preloader__glow--gold" />
       <div className="hv-preloader__glow hv-preloader__glow--blue" />
@@ -140,18 +140,18 @@ export default function Preloader({ onDone }) {
               className={`hv-preloader__pin${index === figureIndex ? ' is-active' : ''}`}
               style={{ '--pin-angle': `${index * 45}deg` }}
             >
-              <img src={figure.src} alt="" />
+              <span className="hv-preloader__pin-dot" />
             </span>
           ))}
           <div className="hv-preloader__mark">
-            <img src="/images/logo.png" alt="" />
+            <span className="hv-preloader__mark-text">HV</span>
           </div>
         </div>
 
         <p className="hv-preloader__kicker">HistoVerse AI</p>
-        <h1 className="hv-preloader__title">History is speaking</h1>
+        <h1 className="hv-preloader__title">La historia habla</h1>
         <p className="hv-preloader__figure">{current.name}</p>
-        <p className="hv-preloader__tagline">Talk with legends · lip-sync · live voices</p>
+        <p className="hv-preloader__tagline">Habla con leyendas · voz en vivo · IA</p>
 
         <div
           className="hv-preloader__track"
@@ -159,7 +159,7 @@ export default function Preloader({ onDone }) {
           aria-valuemin={0}
           aria-valuemax={100}
           aria-valuenow={pct}
-          aria-label="Loading"
+          aria-label="Cargando"
         >
           <span className="hv-preloader__fill" style={{ width: `${pct}%` }} />
         </div>
@@ -169,7 +169,7 @@ export default function Preloader({ onDone }) {
           className="hv-preloader__skip"
           onClick={() => skipRef.current()}
         >
-          Skip intro
+          Saltar intro
         </button>
       </div>
     </div>

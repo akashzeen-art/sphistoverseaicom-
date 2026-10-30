@@ -16,7 +16,7 @@ export default function BrainTrainersPage() {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    document.title = 'Brain Trainers | HistoVerse AI'
+    document.title = 'Entrenadores Mentales | HistoVerse AI'
     return () => {
       document.title = 'HistoVerse AI'
     }
@@ -31,17 +31,17 @@ export default function BrainTrainersPage() {
           <div className="row g-0 py-3">
             <div className="col-12 mt-5 mb-0 my-md-0 hv-rise">
               <Link className="back_arrow" to="/#brain-trainers">
-                go back
+                Volver
               </Link>
             </div>
             <div className="col-12 mt-3 hv-rise hv-rise-delay-1">
               <div className="section-header-dark">
-                Brain<span>Trainers</span>
+                Entrenadores<span>Mentales</span>
               </div>
               {category ? (
                 <p
                   className="mb-0 mt-2"
-                  style={{ color: 'var(--dark-blue)', fontSize: '1.1rem' }}
+                  style={{ color: 'var(--ht-muted)', fontSize: '1.1rem' }}
                 >
                   {category}
                 </p>
@@ -52,8 +52,8 @@ export default function BrainTrainersPage() {
           <div className="row g-4 py-3 py-lg-5">
             {items.length === 0 ? (
               <div className="col-12 text-center py-5">
-                <p className="mb-0" style={{ color: 'var(--dark-blue)' }}>
-                  More trainers coming soon on this page.
+                <p className="mb-0" style={{ color: 'var(--ht-muted)' }}>
+                  Más entrenadores próximamente en esta página.
                 </p>
               </div>
             ) : (
@@ -66,7 +66,7 @@ export default function BrainTrainersPage() {
                   <Link to={talkUrl(trainer.id)} className="hv-trainer-card hv-trainer-card--page">
                     <div className="hv-trainer-card__category">{trainer.category}</div>
                     <div className="hv-trainer-card__name">{trainer.name}</div>
-                    <div className="hv-trainer-card__cta">Talk →</div>
+                    <div className="hv-trainer-card__cta">Hablar →</div>
                   </Link>
                 </div>
               ))
@@ -80,21 +80,21 @@ export default function BrainTrainersPage() {
               <div className="block-27">
                 <div
                   role="navigation"
-                  aria-label="Pagination"
+                  aria-label="Paginación"
                   className="pagination"
                 >
                   {currentPage <= 1 ? (
-                    <span className="previous_page disabled" aria-label="Previous page">
-                      ← Previous
+                    <span className="previous_page disabled" aria-label="Página anterior">
+                      ← Anterior
                     </span>
                   ) : (
                     <Link
                       className="previous_page"
-                      aria-label="Previous page"
+                      aria-label="Página anterior"
                       to={`/brain-trainers?page=${currentPage - 1}`}
                       rel="prev"
                     >
-                      ← Previous
+                      ← Anterior
                     </Link>
                   )}
 
@@ -105,7 +105,7 @@ export default function BrainTrainersPage() {
                         <em
                           key={n}
                           className="current"
-                          aria-label={`Page ${n}`}
+                          aria-label={`Página ${n}`}
                           aria-current="page"
                         >
                           {n}
@@ -115,7 +115,7 @@ export default function BrainTrainersPage() {
                     return (
                       <Link
                         key={n}
-                        aria-label={`Page ${n}`}
+                        aria-label={`Página ${n}`}
                         to={`/brain-trainers?page=${n}`}
                         rel={n === currentPage + 1 ? 'next' : undefined}
                       >
@@ -125,17 +125,17 @@ export default function BrainTrainersPage() {
                   })}
 
                   {currentPage >= BRAIN_TRAINERS_TOTAL_PAGES ? (
-                    <span className="next_page disabled" aria-label="Next page">
-                      Next →
+                    <span className="next_page disabled" aria-label="Página siguiente">
+                      Siguiente →
                     </span>
                   ) : (
                     <Link
                       className="next_page"
-                      aria-label="Next page"
+                      aria-label="Página siguiente"
                       to={`/brain-trainers?page=${currentPage + 1}`}
                       rel="next"
                     >
-                      Next →
+                      Siguiente →
                     </Link>
                   )}
                 </div>

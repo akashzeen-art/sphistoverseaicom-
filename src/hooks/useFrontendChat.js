@@ -49,6 +49,7 @@ export function useFrontendChat(systemPrompt, _greeting, profile, figureId) {
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
   const [error, setError] = useState(null);
   const historyRef = useRef([]);
   const audioRef = useRef(null);
@@ -65,6 +66,19 @@ export function useFrontendChat(systemPrompt, _greeting, profile, figureId) {
     objectUrlsRef.current.forEach((u) => URL.revokeObjectURL(u));
     objectUrlsRef.current = [];
     setIsSpeaking(false);
+    setIsPaused(false);
+  }, []);
+
+  const togglePause = useCallback(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    if (audio.paused) {
+      audio.play().catch(() => {});
+      setIsPaused(false);
+    } else {
+      audio.pause();
+      setIsPaused(true);
+    }
   }, []);
 
   const resetChat = useCallback((newGreeting) => {
@@ -187,6 +201,7 @@ export function useFrontendChat(systemPrompt, _greeting, profile, figureId) {
         ),
       );
       setIsSpeaking(false);
+      setIsPaused(false);
       if (audioRef.current === audio) audioRef.current = null;
 
     } catch (err) {
@@ -195,8 +210,9 @@ export function useFrontendChat(systemPrompt, _greeting, profile, figureId) {
       historyRef.current = historyRef.current.slice(0, -1);
       setIsLoading(false);
       setIsSpeaking(false);
+      setIsPaused(false);
     }
   }, [isLoading, isSpeaking, systemPrompt, profile, figureId, stopAudio]);
 
-  return { messages, isLoading, isSpeaking, error, sendMessage, resetChat };
+  return { messages, isLoading, isSpeaking, isPaused, error, sendMessage, resetChat, togglePause };
 }

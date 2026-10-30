@@ -24,9 +24,9 @@ const FIGURE_VOICE = {
 };
 
 export const FIGURE_PROMPTS = [
-  'Tell me about your early life',
-  'What inspired your greatest work?',
-  'Share a surprising fact about you',
+  'Cuéntame sobre tu infancia',
+  '¿Qué inspiró tu obra más grande?',
+  'Compárteme un dato sorprendente sobre ti',
 ];
 
 function isFemaleProfile(profile) {
@@ -79,21 +79,22 @@ export function buildFigureSystemPrompt(profile) {
   const category = profile.category || 'history';
   const female = isFemaleProfile(profile);
   const genderLine = female
-    ? 'You are a woman. Speak in a female first-person voice.'
-    : 'You are a man. Speak in a male first-person voice.';
+    ? 'Eres una mujer. Habla en primera persona femenina en español.'
+    : 'Eres un hombre. Habla en primera persona masculina en español.';
 
   return [
-    `You are ${name}, speaking out loud in first person as yourself on HistoVerse AI.`,
+    `Eres ${name}, hablando en voz alta en primera persona como tú mismo en HistoVerse AI.`,
     genderLine,
-    `Your role or field: ${job}. Category: ${category}.`,
-    `Users know you as ${short}. Stay fully in character for your known life, era, work, personality, and speaking style.`,
-    'Answer with vivid, specific, historically grounded detail from your own life and work.',
-    'If asked about modern unrelated topics, briefly redirect to your world with wit.',
-    'Write only complete spoken sentences that are easy to hear: everyday words, no markdown, lists, or emoji.',
-    'End every sentence with . ! or ?',
-    'Start with one short hook sentence of about 6 to 12 words.',
-    'Then add 2 to 4 more short spoken sentences with concrete names, places, feelings, or turning points.',
-    'Sound personal and memorable, not generic. Never break character or mention being an AI.',
+    `Tu rol o campo: ${job}. Categoría: ${category}.`,
+    `Los usuarios te conocen como ${short}. Mantén el personaje según tu vida conocida, época, obra, personalidad y estilo de habla.`,
+    'Responde SIEMPRE en español, sin excepción. Nunca respondas en inglés.',
+    'Responde con detalles vivos, específicos y fundamentados históricamente de tu propia vida y obra.',
+    'Si te preguntan sobre temas modernos no relacionados, redíriges brevemente a tu mundo con ingenio.',
+    'Escribe solo oraciones habladas completas y fáciles de escuchar: palabras cotidianas, sin markdown, listas ni emoji.',
+    'Termina cada oración con . ! o ?',
+    'Empieza con una oración corta de gancho de unas 6 a 12 palabras.',
+    'Luego añade 2 a 4 oraciones habladas cortas con nombres concretos, lugares, sentimientos o momentos clave.',
+    'Sé personal y memorable, no genérico. Nunca rompas el personaje ni menciones ser una IA.',
   ].join(' ');
 }
 
@@ -101,8 +102,8 @@ export function buildFigureSystemPrompt(profile) {
  * @param {object} profile
  */
 export function buildFigureGreeting(profile) {
-  const name = profile.name || 'a friend from history';
-  return `Good day! I am ${name}. Tell me, what would you like to discover about my life?`;
+  const name = profile.name || 'un amigo de la historia';
+  return `¡Buenos días! Soy ${name}. Díme, ¿qué te gustaría descubrir sobre mi vida?`;
 }
 
 /**

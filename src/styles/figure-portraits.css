@@ -1,0 +1,133 @@
+/**
+ * Full-body character PNGs — keep face + body visible (no harsh crop on zoom).
+ */
+
+.figure-portrait,
+.card__image.figure-portrait {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+/* —— Home historical figures carousel —— */
+.slider .figures-swiper .figure-portrait-wrap {
+  width: min(280px, 82vw);
+  height: min(420px, 62vh);
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.slider .figures-swiper .swiper-slide .slider-card {
+  border-radius: 0;
+  width: auto;
+  height: auto;
+  background: transparent;
+  overflow: visible;
+  transform: scale(0.78);
+  opacity: 0.72;
+  transition:
+    transform 0.35s ease,
+    opacity 0.35s ease;
+}
+
+.slider .figures-swiper .swiper-slide-active .slider-card {
+  transform: scale(1);
+  opacity: 1;
+  border-radius: 0;
+  width: auto;
+  height: auto;
+  background: transparent;
+}
+
+.slider .figures-swiper .swiper-slide .card__image,
+.slider .figures-swiper .swiper-slide-active .card__image,
+.slider .owl-carousel .owl-item img.card__image {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+@media screen and (min-width: 768px) {
+  .slider .figures-swiper .figure-portrait-wrap {
+    width: min(300px, 34vw);
+    height: min(440px, 60vh);
+  }
+
+  .slider .figures-swiper .swiper-slide .slider-card {
+    transform: scale(0.82);
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .slider .figures-swiper .figure-portrait-wrap {
+    width: min(320px, 28vw);
+    height: min(480px, 64vh);
+  }
+}
+
+/* —— Brain trainer cards —— */
+.brain-trainers-category-image {
+  background: var(--blue);
+  border-radius: 15px 0 15px 15px;
+  overflow: hidden;
+  position: relative;
+  padding: 0;
+}
+
+.brain-trainers-category-image .image-box {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  background: transparent !important;
+  background-image: none !important;
+  background-size: unset !important;
+  width: 100% !important;
+  height: 220px !important;
+}
+
+.brain-trainers-category-image .image-box .figure-portrait {
+  position: relative;
+  z-index: 1;
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+.brain-trainer .brain-trainers-category-image .image-box,
+.slider2 .brain-trainers-category-image .image-box {
+  width: 100% !important;
+  height: 200px !important;
+}
+
+/* —— Talk intro hero —— */
+.talk-panel__hero {
+  background: #0a1024;
+  background-image: none !important;
+}
+
+.talk-panel__hero-portrait {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center top;
+  pointer-events: none;
+}
+
+.talk-panel__overlay,
+.talk-panel__glow,
+.talk-panel__intro {
+  z-index: 1;
+}

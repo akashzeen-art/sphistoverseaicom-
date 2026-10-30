@@ -1,0 +1,290 @@
+body.is-preloading {
+  overflow: hidden;
+  height: 100%;
+}
+
+.hv-app {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hv-app.is-ready {
+  opacity: 1;
+  pointer-events: auto;
+  animation: hv-app-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hv-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 12000;
+  overflow: hidden;
+  color: #fff;
+  background: #0b1228;
+  isolation: isolate;
+}
+
+.hv-preloader.is-leaving {
+  animation: hv-preloader-out 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.hv-preloader__glow {
+  position: absolute;
+  pointer-events: none;
+  filter: blur(48px);
+  mix-blend-mode: screen;
+}
+
+.hv-preloader__glow--gold {
+  width: 58%;
+  height: 48%;
+  right: -8%;
+  top: 8%;
+  background: radial-gradient(circle, rgba(237, 194, 83, 0.38), transparent 70%);
+  animation: hv-drift 10s ease-in-out infinite alternate;
+}
+
+.hv-preloader__glow--blue {
+  width: 64%;
+  height: 56%;
+  left: -12%;
+  bottom: -6%;
+  background: radial-gradient(circle, rgba(40, 67, 219, 0.42), transparent 68%);
+  animation: hv-drift 12s ease-in-out infinite alternate-reverse;
+}
+
+.hv-preloader__grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.18;
+  background-image:
+    linear-gradient(rgba(237, 194, 83, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(237, 194, 83, 0.12) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: radial-gradient(circle at 50% 42%, #000 20%, transparent 78%);
+}
+
+.hv-preloader__dust {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hv-preloader__speck {
+  position: absolute;
+  border-radius: 50%;
+  background: #edc253;
+  opacity: 0.55;
+  animation: hv-twinkle linear infinite;
+}
+
+.hv-preloader__vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 42%, transparent 30%, rgba(8, 12, 28, 0.72) 100%);
+}
+
+.hv-preloader__stage {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.25rem 2.4rem;
+  text-align: center;
+}
+
+.hv-preloader__orbit {
+  position: relative;
+  width: min(280px, 68vw);
+  height: min(280px, 68vw);
+  margin-bottom: 1.4rem;
+}
+
+.hv-preloader__halo {
+  position: absolute;
+  inset: 18%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(237, 194, 83, 0.28), transparent 68%);
+  animation: hv-pulse 2.4s ease-in-out infinite;
+}
+
+.hv-preloader__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(237, 194, 83, 0.28);
+}
+
+.hv-preloader__ring--outer {
+  animation: hv-spin 18s linear infinite;
+}
+
+.hv-preloader__ring--mid {
+  inset: 14%;
+  border-style: dashed;
+  animation: hv-spin 12s linear infinite reverse;
+}
+
+.hv-preloader__mark {
+  position: absolute;
+  inset: 32%;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(17, 27, 61, 0.88);
+  border: 1px solid rgba(237, 194, 83, 0.45);
+  box-shadow: 0 0 40px rgba(237, 194, 83, 0.18);
+  overflow: hidden;
+}
+
+.hv-preloader__mark img {
+  width: 62%;
+  height: auto;
+}
+
+.hv-preloader__pin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 46px;
+  height: 46px;
+  margin: -23px;
+  transform: rotate(var(--pin-angle)) translate(min(118px, 34vw)) rotate(calc(-1 * var(--pin-angle)));
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(237, 194, 83, 0.35);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+  opacity: 0.55;
+  transition: opacity 0.35s ease, transform 0.35s ease, border-color 0.35s ease;
+}
+
+.hv-preloader__pin.is-active {
+  opacity: 1;
+  border-color: #edc253;
+  transform: rotate(var(--pin-angle)) translate(min(118px, 34vw)) rotate(calc(-1 * var(--pin-angle))) scale(1.12);
+}
+
+.hv-preloader__pin img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.hv-preloader__kicker {
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #edc253;
+  font-weight: 700;
+}
+
+.hv-preloader__title {
+  margin: 0.45rem 0 0;
+  font-family: Inter, sans-serif;
+  font-weight: 900;
+  font-size: clamp(1.7rem, 4vw, 2.6rem);
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+
+.hv-preloader__figure {
+  margin: 0.55rem 0 0;
+  min-height: 1.4em;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #edc253;
+}
+
+.hv-preloader__tagline {
+  margin: 0.2rem 0 1.35rem;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.92rem;
+}
+
+.hv-preloader__track {
+  width: min(280px, 72vw);
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+
+.hv-preloader__fill {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #edc253, #fff3c4);
+  border-radius: inherit;
+  transition: width 80ms linear;
+}
+
+.hv-preloader__pct {
+  margin: 0.45rem 0 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.hv-preloader__skip {
+  margin-top: 1rem;
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.hv-preloader__skip:hover {
+  color: #edc253;
+}
+
+@keyframes hv-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes hv-pulse {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.06); }
+}
+
+@keyframes hv-drift {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(24px, -16px, 0); }
+}
+
+@keyframes hv-twinkle {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.9; }
+}
+
+@keyframes hv-preloader-out {
+  to {
+    opacity: 0;
+    transform: scale(1.04);
+    visibility: hidden;
+  }
+}
+
+@keyframes hv-app-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hv-preloader__ring--outer,
+  .hv-preloader__ring--mid,
+  .hv-preloader__halo,
+  .hv-preloader__glow,
+  .hv-preloader__speck {
+    animation: none;
+  }
+}

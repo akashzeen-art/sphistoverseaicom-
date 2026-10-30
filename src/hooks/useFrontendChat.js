@@ -54,10 +54,12 @@ export function useFrontendChat(systemPrompt, _greeting, profile, figureId) {
   const historyRef = useRef([]);
   const audioRef = useRef(null);
   const cancelTypeRef = useRef(false);
+  const pauseTypeRef = useRef(false);
   const objectUrlsRef = useRef([]);
 
   const stopAudio = useCallback(() => {
     cancelTypeRef.current = true;
+    pauseTypeRef.current = false;
     if (audioRef.current) {
       audioRef.current.pause();
       audioRef.current.src = '';
@@ -74,9 +76,11 @@ export function useFrontendChat(systemPrompt, _greeting, profile, figureId) {
     if (!audio) return;
     if (audio.paused) {
       audio.play().catch(() => {});
+      pauseTypeRef.current = false;
       setIsPaused(false);
     } else {
       audio.pause();
+      pauseTypeRef.current = true;
       setIsPaused(true);
     }
   }, []);
@@ -98,6 +102,7 @@ export function useFrontendChat(systemPrompt, _greeting, profile, figureId) {
 
     stopAudio();
     cancelTypeRef.current = false;
+    pauseTypeRef.current = false;
 
     const userMsg = { id: nextId(), role: 'user', content: trimmed };
     const botId = nextId();
@@ -171,6 +176,7 @@ export function useFrontendChat(systemPrompt, _greeting, profile, figureId) {
           let i = 0;
           const iv = setInterval(() => {
             if (cancelTypeRef.current) { clearInterval(iv); return; }
+            if (pauseTypeRef.current) return;
             i += 1;
             const partial = words.slice(0, i).join(' ');
             setMessages((prev) =>
